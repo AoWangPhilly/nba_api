@@ -1,10 +1,20 @@
-
 ![Logo](https://www.logodesignlove.com/images/classic/nba-logo.jpg)
 
 
 # NBA API Project
 
 For this project we want to scrape statistics on all the NBA teams and players from the NBA Advanced Stats webpage
+
+
+## Table of Contents
+1. [Installation](#Installation) 
+2. [Getting the NBA Teams](#Getting-the-NBA-Teams) 
+3. [Getting the Team Rosters](#Getting-the-Team-Rosters)
+4. [Getting All NBA Players](#Getting-All-NBA-Players)
+5. [Pre-Processing The Team Roster](#Pre-Processing-The-Team-Roster)
+6. [Player Dashboard Statistics](#Player-Dashboard-Statistics)
+7. [Player Career Statistics](#Player-Career-Statistics)
+
 
 ## Authors
 
@@ -75,4 +85,45 @@ The task for scraping player career statistics takes about 30-45 minutes to exec
 
 The NBA career stats page does utilize an API, but it requires some header information to make the request. I've experimented with the API (Request URL: https://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=Totals&PlayerID=1630178
 ) and there seems to be a call limit. I tried to gather all the player career stats using the API, but it only allowed me to make 10 requests before buffering endlessly.
- 
+
+
+## Data Dictionary 
+| Field Name   | Data Type | Description                      | Example            |
+|--------------|-----------|----------------------------------|--------------------|
+| Division     | string    | Name of Division                 | Atlantic           |
+| Conference   | string    | Name of Conference               | Western Conference |
+| Team         | string    | Name of Team                     | Philadelphia 76ers |
+| Team ID      | integer   | ID Associated For Team           | 1610612755         |
+| Player ID    | integer   | ID Associated For Player         | 1628379            |
+| Player Name  | integer   | Name Associated For Player       | James Harden       |
+| Height       | float     | Height Associated For Player     | 203.20	             |
+| Weight       | float     | Weight Associated For Player     | 95.25              |
+| Birth Date   | datetime  | Birth Date Associated For Player | 1998-03-03         |
+| Age          | integer   | Age Associated For Player        | 23                 |
+| Exp          | integer   | Years of Experience              | 4                  |
+| School       | string    | School the Player Attended       | Duke               |
+| PPG          | float     | Points per Game                  | 28.3               |
+| RPG          | float     | Rebounds per Game                | 5.6                |
+| APG          | float     | Assists per Game                 | 4.3                |
+| PIE          | float     | Player Impact Estimate           | 17.4               |
+| GP           | integer   | Games Played                     | 45                 |
+| MIN          | float     | Minutes Per Game                 | 30.3               |
+| FGM          | float     | Field Goals Made per Game        | 11.2               |
+| FGA          | float     | Field Goals Attempted per Game   | 21.3               |
+| FG%          | float     | Field Goal Percentage per Game   | 45.6%              |
+| 3PM          | float     | 3 Pointers Made per Game         | 2.3                |
+| 3PA          | float     | 3 Pointers Attempted per Game    | 5.6                |
+| 3P%          | float     | 3 Point Percentage per Game      | 35.7%              |
+| FTM          | float     | Free Throws Made per Game        | 6.7                |
+| FTA          | float     | Free Throws Attempted per Game   | 8.6                |
+| FT%          | float     | Free Throw Percentage per Game   | 81.2%              |
+| OREB         | float     | Offensive Rebounds per Game      | 4.3                |
+| DREB         | float     | Defensive Rebounds per Game      | 5.1                |
+| TOV          | float     | Turnovers per Game               | 3.2                |
+| STL          | float     | Steals per Game                  | 2.1                |
+| BLK          | float     | Blocks per Game                  | 2.2                |
+| PF           | float     | Personal Fouls per Game          | 1.9                |
+| FP           | float     | Fantasy Points per Game          | 45.3               |
+| DD2          | integer   | Double Doubles                   | 4                  |
+| TD3          | integer   | Triple Doubles                   | 2                  |
+| +/-          | float     | Plus Minus per Game              | 8.4                |
