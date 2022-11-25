@@ -38,8 +38,8 @@ The first part of our notebook is getting the data of all the NBA Teams. The fun
 
 ```python
 soup = BeautifulSoup(response.content, "html.parser")
-    regex = re.compile("^StatsTeamsList_divContent")
-    table = soup.find("div", {"class": regex})
+regex = re.compile("^StatsTeamsList_divContent")
+table = soup.find("div", {"class": regex})
 ```
 And we were able to get the division, team, and team ID in the HTML from the website.
 ## Getting The Team Rosters
@@ -47,10 +47,10 @@ The second part of our notebook is getting the team rosters. We wanted to get al
 ```python
  i = 0
  while not response.ok:
-        print(f"There was an issue getting team id={team_id}!!")
-        print(f"Reattempting! Iteration {i + 1}")
-        i += 1
-        response = requests.get(url)
+    print(f"There was an issue getting team id={team_id}!!")
+    print(f"Reattempting! Iteration {i + 1}")
+    i += 1
+    response = requests.get(url)
 ```
 
 Sometimes when we called the URL it would freeze up on us or would refuse to give us data so that is why we used a while loop. After doing this we were able to get the correct roster data.
@@ -58,8 +58,8 @@ Sometimes when we called the URL it would freeze up on us or would refuse to giv
 The third part of our notebook is getting all the players in the NBA. In order to do this we needed to create a list of team ID's. We entered it in the function in order to get the team rosters from all the NBA teams. Then we created a thread in order to complete the various tasks more efficiently and to increase the speed of our program. Instead of waiting to get one team roster at a time and for each task to finish, we can use a thread to get all the team rosters at the same time.
 ```python
 with futures.ThreadPoolExecutor() as executor:
-        player_list = list(executor.map(get_team_roster, team_ids))
-    return pd.concat(player_list).reset_index(drop=True)
+    player_list = list(executor.map(get_team_roster, team_ids))
+return pd.concat(player_list).reset_index(drop=True)
 ```
 
 ## Pre-Processing The Team Roster
@@ -70,9 +70,9 @@ The fifth part of our notebook is getting player dashboard statistics. These sta
 The final part of our project was getting the player career statistics. This was where we needed to use selenium as the data is dynamic and constantly changing. The first function checks when the loading screen stops and the data is ready. The second function gets the actual stats. We were looking at career regular season stats for each player. Then we had to collect and format the data and put it inside a dataframe and return it. In some cases, players did not have career stats so we decided to mention that there is no data available for such cases.
 ```python
 if soup.find("div", string="No data available"):
-            print(f"No data available for player: {player_id}")
-            return pd.DataFrame()
-        print("There seems to be another issue!!")
+    print(f"No data available for player: {player_id}")
+    return pd.DataFrame()
+print("There seems to be another issue!!")
  ```        
 These players are usually rookies or reserve players that do not get play time. We then had to run a for loop to get all the player's career stats.
 ```python
