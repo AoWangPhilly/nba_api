@@ -18,7 +18,7 @@ After the data acquisition step, we have many ways for data distribution. The sc
 9. [Data Dictionary](#data-dictionary)
 10. [API Creation](#api-creation)
 11. [API Endpoints](#api-endpoints)
-
+12. [How to Recreate Project](#how-to-recreate-project)
 
 ## Authors
 
@@ -157,3 +157,21 @@ Finally, the endpoints are all created in `main.py`.
     - https://dsci511-nba-api.herokuapp.com/player/quickstats/PLAYER_ID
 * Get Player Career Stats
     - https://dsci511-nba-api.herokuapp.com/player/careerstats/PLAYER_ID
+
+
+## How to Recreate Project
+The first step is to first create a virtual environment and then install all the Python packages by following the steps in the `Installation` section. Then, to recreate the API, we first have to recreate the data. So we open up a Jupyter Server for the file `notebooks/NBA Web Scraping.ipynb` and run all the code cells in the notebook.
+
+Once that's complete, you should have a `data` folder created with four CSV files: `player_info.csv`, `player_quick_stats.csv`, `players.csv`, and `teams.csv`. 
+
+Next, we need to create the Postgres database. Create a `.env` file in the base directory and add in the credentials.
+
+```
+DATABASE_HOSTNAME=""
+DATABASE_PORT=""
+DATABASE_PASSWORD=""
+DATABASE_USERNAME=""
+DATABASE_NAME=""
+```
+
+Finally, run `uvicorn main:app` in the base directory and you have your own local API. 
