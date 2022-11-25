@@ -4,7 +4,7 @@
 
 For this project we want to scrape data on all the NBA teams and players from the NBA Advanced Stats webpage. The scripts will scrape all the NBA teams and team rosters for the 2022-23 season. Additionally, the script will gather the career regular season stats for each player.
 
-After the data acquisition step, we have many ways for data distribution. The script automatically saves each piece of data into CSV files, so we could upload them to Kaggle. Additionally, we also developed and hosted an API, so it'll be easier for programmers to get the data.
+After the data acquisition step, we have many ways for data distribution. The script automatically saves each piece of data into CSV files, so we could upload them to Kaggle. Additionally, we also developed and [hosted](https://dsci511-nba-api.herokuapp.com/docs) an API, so it'll be easier for programmers to get the data.
 
 ## Table of Contents
 1. [Installation](#Installation) 
@@ -14,6 +14,10 @@ After the data acquisition step, we have many ways for data distribution. The sc
 5. [Pre-Processing The Team Roster](#Pre-Processing-The-Team-Roster)
 6. [Player Dashboard Statistics](#Player-Dashboard-Statistics)
 7. [Player Career Statistics](#Player-Career-Statistics)
+8. [Limitations](#limitations)
+9. [Data Dictionary](#data-dictionary)
+10. [API Creation](#api-creation)
+11. [API Endpoints](#api-endpoints)
 
 
 ## Authors
@@ -132,3 +136,24 @@ The NBA career stats page does utilize an API, but it requires some header infor
 | BLK          | integer   | The number of shots attempted by a player or team that are blocked by a defender  | 6 |
 | TOV          | integer   | A turnover occurs when the player or team on offense loses the ball to the defense  | 26 
 | PF           | integer   | The number of personal fouls a player or team committed | 18
+
+## API Creation
+We decided to develop an API because it's one of the goals we set out for the project scope. All code for the API is in the `api` directory and the `main.py` file in the base directory. We also decided to develop it with FastAPI, since it provides a nice documentation page showcasing each endpoint.
+
+The first step for creating the API is creating the database. In `main.py`, we create the NBA database, then we read in the CSV files saved from the previous execution as data frames and save them as database tables. 
+
+Next, we need some way to make queries to the database tables. In `api/database.py`, we created a method, `get_db`, which creates a local session using SQLAlchemy. From there, we also need a way to model the tables to make querying simpler. In `api/models.py`, we created a model for each table.
+
+Finally, the endpoints are all created in `main.py`.
+
+## API Endpoints
+* Get all NBA Teams
+    - https://dsci511-nba-api.herokuapp.com/teams
+* Get NBA Team Roster
+    - https://dsci511-nba-api.herokuapp.com/roster/TEAM_ID
+* Get Player General Information
+    - https://dsci511-nba-api.herokuapp.com/player/PLAYER_ID
+* Get Player Quick Stats
+    - https://dsci511-nba-api.herokuapp.com/player/quickstats/PLAYER_ID
+* Get Player Career Stats
+    - https://dsci511-nba-api.herokuapp.com/player/careerstats/PLAYER_ID
