@@ -96,36 +96,39 @@ The NBA career stats page does utilize an API, but it requires some header infor
 | Division     | string    | Name of Division                 | Atlantic           |
 | Team         | string    | Name of Team                     | Philadelphia 76ers |
 | Team ID      | integer   | ID Associated For Team           | 1610612755         |
+| Team Abbreviation| string| Abbreviation of Team Name        | PHL
+| Season       | integer   | One year in which regulated games of the sport are in session           | 2022
 | Player ID    | integer   | ID Associated For Player         | 1628379            |
-| Player Name  | integer   | Name Associated For Player       | James Harden       |
-| Height       | float     | Height Associated For Player     | 203.20	             |
-| Weight       | float     | Weight Associated For Player     | 95.25              |
-| Birth Date   | datetime  | Birth Date Associated For Player | 1998-03-03         |
-| Age          | integer   | Age Associated For Player        | 23                 |
-| Exp          | string   | Years of Experience              | 4 or R                 |
-| School       | string    | School the Player Attended       | Duke               |
-| PPG          | float     | Points per Game                  | 28.3               |
-| RPG          | float     | Rebounds per Game                | 5.6                |
-| APG          | float     | Assists per Game                 | 4.3                |
+| Player Name  | string   | Name Associated For Player       | James Harden       |
+| Player Number| integer   | The number worn on a player's uniform | #1
+| Position     | string    | The role the player plays in the game | G
+| Height       | float     | Height Associated For Player     | 196.0	           |
+| Weight       | float     | Weight Associated For Player     | 100                |
+| Birth Date   | datetime  | Birth Date Associated For Player | 1989-08-26         |
+| Age          | integer   | Age Associated For Player        | 33                 |
+| Exp          | string    | Years of Experience              | 13 or R            |
+| School       | string    | School the Player Attended       | Arizona State      |
+| PPG          | float     | Points per Game                  | 22.0               |
+| RPG          | float     | Rebounds per Game                | 7.0                |
+| APG          | float     | Assists per Game                 | 10.0               |
 | PIE          | float     | Player Impact Estimate           | 17.4               |
-| GP           | integer   | Games Played                     | 45                 |
-| MIN          | float     | Minutes Per Game                 | 30.3               |
-| FGM          | float     | Field Goals Made per Game        | 11.2               |
-| FGA          | float     | Field Goals Attempted per Game   | 21.3               |
-| FG%          | float     | Field Goal Percentage per Game   | 45.6%              |
-| 3PM          | float     | 3 Pointers Made per Game         | 2.3                |
-| 3PA          | float     | 3 Pointers Attempted per Game    | 5.6                |
-| 3P%          | float     | 3 Point Percentage per Game      | 35.7%              |
-| FTM          | float     | Free Throws Made per Game        | 6.7                |
-| FTA          | float     | Free Throws Attempted per Game   | 8.6                |
-| FT%          | float     | Free Throw Percentage per Game   | 81.2%              |
-| OREB         | float     | Offensive Rebounds per Game      | 4.3                |
-| DREB         | float     | Defensive Rebounds per Game      | 5.1                |
-| TOV          | float     | Turnovers per Game               | 3.2                |
-| STL          | float     | Steals per Game                  | 2.1                |
-| BLK          | float     | Blocks per Game                  | 2.2                |
-| PF           | float     | Personal Fouls per Game          | 1.9                |
-| FP           | float     | Fantasy Points per Game          | 45.3               |
-| DD2          | integer   | Double Doubles                   | 4                  |
-| TD3          | integer   | Triple Doubles                   | 2                  |
-| +/-          | float     | Plus Minus per Game              | 8.4                |
+| GP/GS        | integer   | Games Played                     | 9                  |
+| MIN          | integer   | Minutes Per Game                 | 331	               |
+| PTS          | integer   | The number of points scored      | 198	               |
+| FGM          | integer   | Field Goals Made                 | 63                 |
+| FGA          | integer   | Field Goals Attempted            | 143                |
+| FG%          | float     | Field Goal Percentage            | 44.1               |
+| 3PM          | integer   | 3 Point Field Goals Made         | 20                 |
+| 3PA          | integer   | 3 Pointers Attempted             | 60                 |
+| 3P%          | float     | 3 Point Percentage               | 33.3               |
+| FTM          | integer   | Free Throws Made                 | 52                 |
+| FTA          | integer   | Free Throws Attempted            | 5 6                |
+| FT%          | float     | Free Throw Percentage            | 92.9               |
+| OREB         | integer   | Offensive Rebounds               | 5                  |
+| DREB         | integer   | Defensive Rebounds               | 58                 |
+| REB          | integer   | Rebounds                         | 63                 |
+| AST          | integer   | The number of assists -- passes that lead directly to a made basket -- by a player               | 90 |
+| STL          | integer   | Number of times a defensive player or team takes the ball from a player on offense, causing a turnover | 10 |
+| BLK          | integer   | The number of shots attempted by a player or team that are blocked by a defender  | 6 |
+| TOV          | integer   | A turnover occurs when the player or team on offense loses the ball to the defense  | 26 
+| PF           | integer   | The number of personal fouls a player or team committed | 18
