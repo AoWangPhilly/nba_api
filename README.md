@@ -1,10 +1,10 @@
 ![Logo](https://www.logodesignlove.com/images/classic/nba-logo.jpg)
 
-
 # NBA API Project
 
-For this project we want to scrape statistics on all the NBA teams and players from the NBA Advanced Stats webpage
+For this project we want to scrape data on all the NBA teams and players from the NBA Advanced Stats webpage. The scripts will scrape all the NBA teams and team rosters for the 2022-23 season. Additionally, the script will gather the career regular season stats for each player.
 
+After the data acquisition step, we have many ways for data distribution. The script automatically saves each piece of data into CSV files, so we could upload them to Kaggle. Additionally, we also developed and hosted an API, so it'll be easier for programmers to get the data.
 
 ## Table of Contents
 1. [Installation](#Installation) 
@@ -27,6 +27,7 @@ For this project we want to scrape statistics on all the NBA teams and players f
  
 
 ## Installation
+The project primarily needs the `requests`, `BeautifulSoup`, and `Selenium` packages to webscraping and `pandas` for data cleaning. We also used `FastAPI` for developing the API and `SQLAlchemy` to write queries for Postgres. Below is the bash command to install all necessary packages to run the Jupyter Notebook and API.
 
 ```bash
 pip install -r requirements.txt
@@ -34,6 +35,7 @@ pip install -r requirements.txt
 
 ## Getting The NBA Teams
 The first part of our notebook is getting the data of all the NBA Teams. The function goes to the NBA team stats page and scrapes all the team data. This includes the division, team, and team ID. We used BeautifulSoup and regex to get the table of teams. 
+
 ```python
 soup = BeautifulSoup(response.content, "html.parser")
     regex = re.compile("^StatsTeamsList_divContent")
@@ -43,6 +45,7 @@ And we were able to get the division, team, and team ID in the HTML from the web
 ## Getting The Team Rosters
 The second part of our notebook is getting the team rosters. We wanted to get all the teams rosters for this current NBA season. We created a function that helps you create the URL given the team ID. We ran a while loop that kept on calling until we got our desired data. 
 ```python
+ i = 0
  while not response.ok:
         print(f"There was an issue getting team id={team_id}!!")
         print(f"Reattempting! Iteration {i + 1}")
@@ -74,24 +77,23 @@ if soup.find("div", string="No data available"):
 These players are usually rookies or reserve players that do not get play time. We then had to run a for loop to get all the player's career stats.
 ```python
 output = []
-    for idx, player_id in enumerate(player_ids):
-        print(f"#{idx}", end=" ")
-        output.append(get_player_info(player_id))
-    return pd.concat(output).reset_index(drop=True)
+for idx, player_id in enumerate(player_ids):
+    print(f"#{idx}", end=" ")
+    output.append(get_player_info(player_id))
+return pd.concat(output).reset_index(drop=True)
  ```
 
 ## Limitations
-The task for scraping player career statistics takes about 30-45 minutes to execute and is the biggest limitation to our project. Therefore, using Selenium is one of biggest limitations to our project because it requires us to open up the browser to scrape the HTML rather than sending an API request. 
+The task for scraping player career statistics takes about 30-45 minutes to execute and is the biggest limitation to our project. Because we use Selenium, it requires us to open up the browser to scrape the HTML rather than sending an API request, which would generally be much quicker.
 
 The NBA career stats page does utilize an API, but it requires some header information to make the request. I've experimented with the API (Request URL: https://stats.nba.com/stats/playercareerstats?LeagueID=00&PerMode=Totals&PlayerID=1630178
-) and there seems to be a call limit. I tried to gather all the player career stats using the API, but it only allowed me to make 10 requests before buffering endlessly.
+) and there seems to be a call limit. I attempted to gather all the player career stats using the API, but it only allowed me to make 10 requests before buffering endlessly.
 
 
 ## Data Dictionary 
 | Field Name   | Data Type | Description                      | Example            |
 |--------------|-----------|----------------------------------|--------------------|
 | Division     | string    | Name of Division                 | Atlantic           |
-| Conference   | string    | Name of Conference               | Western Conference |
 | Team         | string    | Name of Team                     | Philadelphia 76ers |
 | Team ID      | integer   | ID Associated For Team           | 1610612755         |
 | Player ID    | integer   | ID Associated For Player         | 1628379            |
@@ -100,7 +102,7 @@ The NBA career stats page does utilize an API, but it requires some header infor
 | Weight       | float     | Weight Associated For Player     | 95.25              |
 | Birth Date   | datetime  | Birth Date Associated For Player | 1998-03-03         |
 | Age          | integer   | Age Associated For Player        | 23                 |
-| Exp          | integer   | Years of Experience              | 4                  |
+| Exp          | string   | Years of Experience              | 4 or R                 |
 | School       | string    | School the Player Attended       | Duke               |
 | PPG          | float     | Points per Game                  | 28.3               |
 | RPG          | float     | Rebounds per Game                | 5.6                |
